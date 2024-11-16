@@ -1,6 +1,7 @@
 package dev.dsilva.workshopspringmongo.services;
 
 import dev.dsilva.workshopspringmongo.domain.User;
+import dev.dsilva.workshopspringmongo.dto.UserDTO;
 import dev.dsilva.workshopspringmongo.repositories.UserRepository;
 import dev.dsilva.workshopspringmongo.resources.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,17 @@ public class UserService {
 
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    public User fromDto(UserDTO userDTO) {
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+    }
+
+    public void remove(String id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException();
+        }
+
+        userRepository.deleteById(id);
     }
 }
