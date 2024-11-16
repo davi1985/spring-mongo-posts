@@ -2,6 +2,7 @@ package dev.dsilva.workshopspringmongo.services;
 
 import dev.dsilva.workshopspringmongo.domain.User;
 import dev.dsilva.workshopspringmongo.repositories.UserRepository;
+import dev.dsilva.workshopspringmongo.resources.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public class UserService {
 
     public User add(User user) {
         return userRepository.save(user);
+    }
+
+    public User findById(String id) {
+        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }
