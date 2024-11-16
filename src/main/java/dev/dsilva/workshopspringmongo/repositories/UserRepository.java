@@ -1,4 +1,4 @@
-package dev.dsilva.workshopspringmongo;
+package dev.dsilva.workshopspringmongo.repositories;
 
 import dev.dsilva.workshopspringmongo.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
