@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PostDTO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 5944006747676011634L;
 
     private String id;

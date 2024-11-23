@@ -5,10 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthorDTO {
+public class AuthorDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -4788450812677761207L;
 
     private String id;
     private String name;
@@ -17,5 +23,4 @@ public class AuthorDTO {
         id = user.getId();
         name = user.getName();
     }
-
 }
