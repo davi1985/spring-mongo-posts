@@ -23,4 +23,18 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(status).body(error);
     }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<StandardError> notFound(PostNotFoundException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        StandardError error = new StandardError(
+                System.currentTimeMillis(),
+                status.value(), "Post not found",
+                e.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(status).body(error);
+    }
 }
