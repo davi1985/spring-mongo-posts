@@ -2,6 +2,7 @@ package dev.dsilva.workshopspringmongo.config;
 
 import dev.dsilva.workshopspringmongo.domain.Post;
 import dev.dsilva.workshopspringmongo.domain.User;
+import dev.dsilva.workshopspringmongo.dto.AuthorDTO;
 import dev.dsilva.workshopspringmongo.repositories.PostRepository;
 import dev.dsilva.workshopspringmongo.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -34,10 +35,26 @@ public class Instantiation implements CommandLineRunner {
         User user1 = new User(null, "Davi Silva", "davi@email.com");
         User user2 = new User(null, "Joelma Braga", "joelma@email.com");
 
-        Post post1 = new Post(null, dateFormat.parse("23/11/2024"), "Let's travel", "Martin/RN I'm coming 🚙.", user1);
-        Post post2 = new Post(null, dateFormat.parse("23/11/2024"), "Good morning", "God is good all the time.", user2);
-
         userRepository.saveAll(Arrays.asList(user1, user2));
+
+
+        Post post1 = new Post(
+                null,
+                dateFormat.parse("23/11/2024"),
+                "Let's travel",
+                "Martin/RN I'm coming 🚙.",
+                new AuthorDTO(user1)
+        );
+
+        Post post2 = new Post(
+                null,
+                dateFormat.parse("23/11/2024"),
+                "Good morning",
+                "God is good all the time.",
+                new AuthorDTO(user2)
+        );
+
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
