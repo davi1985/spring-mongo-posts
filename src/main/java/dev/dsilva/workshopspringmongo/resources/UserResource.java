@@ -51,6 +51,7 @@ public class UserResource {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @PathVariable String id) {
         User obj = userService.fromDto(userDTO);
         obj.setId(id);
