@@ -1,5 +1,6 @@
 package dev.dsilva.workshopspringmongo.resources;
 
+import dev.dsilva.workshopspringmongo.domain.Post;
 import dev.dsilva.workshopspringmongo.domain.User;
 import dev.dsilva.workshopspringmongo.dto.UserDTO;
 import dev.dsilva.workshopspringmongo.services.UserService;
@@ -30,10 +31,17 @@ public class UserResource {
     }
 
     @GetMapping("/{id}")
-    public UserDTO findById(@PathVariable String id) {
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         var user = userService.findById(id);
 
-        return ResponseEntity.ok(new UserDTO(user)).getBody();
+        return ResponseEntity.ok(new UserDTO(user));
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        var user = userService.findById(id);
+
+        return ResponseEntity.ok(user.getPosts());
     }
 
     @PostMapping

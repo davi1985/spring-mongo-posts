@@ -51,7 +51,7 @@ public class Instantiation implements CommandLineRunner {
                 dateFormat.parse("23/11/2024"),
                 "Good morning",
                 "God is good all the time.",
-                new AuthorDTO(user2)
+                new AuthorDTO(user1)
         );
 
         postRepository.saveAll(Arrays.asList(post1, post2));
