@@ -1,5 +1,6 @@
 package dev.dsilva.workshopspringmongo.resources;
 
+import dev.dsilva.workshopspringmongo.domain.User;
 import dev.dsilva.workshopspringmongo.dto.UserDTO;
 import dev.dsilva.workshopspringmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,16 @@ public class UserResource {
                 .toUri();
 
         return ResponseEntity.created(uri).body(new UserDTO(user));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @PathVariable String id) {
+        User obj = userService.fromDto(userDTO);
+        obj.setId(id);
+
+        userService.update(obj);
+
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
